@@ -3,7 +3,7 @@ package com.example.oschina_client.interf;
 
 /**
  * 
- * @author deyi
+ * @author yuxuehai
  *
  */
 public interface BaseViewInterface {

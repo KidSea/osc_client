@@ -18,7 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
+/**
+ * actionbar开关
+ * @author yuxuehai
+ *
+ */
 public class ActionBarDrawerToggle extends android.support.v4.app.ActionBarDrawerToggle {
 
     private static final String TAG = ActionBarDrawerToggle.class.getName();

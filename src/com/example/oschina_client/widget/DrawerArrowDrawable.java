@@ -12,7 +12,11 @@ import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-
+/**
+ * 绘制动态图片
+ * @author yuxuehai
+ *
+ */
 public abstract class DrawerArrowDrawable extends Drawable {
     private static final float ARROW_HEAD_ANGLE = (float) Math.toRadians(45.0D);
     protected float mBarGap;

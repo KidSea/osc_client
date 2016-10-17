@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.example.oschina_client"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- 导航标题栏 -->
+
+    <com.example.oschina_client.widget.PagerSlidingTab
+        android:id="@+id/pager_tabstrip"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/sliding_tab_strip_background"
+        app:dividerColor="#00000000"
+        app:indicatorColor="#40AA53" >
+    </com.example.oschina_client.widget.PagerSlidingTab>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        style="@style/fill_fill"
+        android:layout_below="@id/pager_tabstrip" >
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>
