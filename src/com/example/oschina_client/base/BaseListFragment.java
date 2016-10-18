@@ -18,6 +18,7 @@ import com.example.oschina_client.cache.CacheManager;
 import com.example.oschina_client.empty.EmptyLayout;
 import com.example.oschina_client.utils.TDevice;
 
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -51,11 +52,11 @@ public class BaseListFragment<T extends Entity> extends BaseFragment implements
 	public static final String BUNDLE_KEY_CATALOG = "BUNDLE_KEY_CATALOG";
 
 	protected int mCurrentPage;
-	//错误信息
+	// 错误信息
 	protected Result mResult;
-	
+
 	protected ListBaseAdapter<T> mAdapter;
-	
+
 	private AsyncTask<String, Void, ListEntity<T>> mCacheTask;
 
 	@InjectView(R.id.swiperefreshlayout)
@@ -142,7 +143,7 @@ public class BaseListFragment<T extends Entity> extends BaseFragment implements
 		// TODO Auto-generated method stub
 		cancelReadCacheTask();
 		mCacheTask = new CacheTask(getActivity()).execute(key);
-		
+
 	}
 
 	private void cancelReadCacheTask() {
@@ -216,16 +217,73 @@ public class BaseListFragment<T extends Entity> extends BaseFragment implements
 		if (data == null) {
 			data = new ArrayList<T>();
 		}
-		if(mResult != null && !mResult.OK()){
+		if (mResult != null && !mResult.OK()) {
 			AppContext.showToast(mResult.getErrorMessage());
 			// 注销登陆，密码已经修改，cookie，失效了
 			AppContext.getInstance().Logout();
 		}
-		
+
 		mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
-		if(mCurrentPage == 0){
-			
+		if (mCurrentPage == 0) {
+			mAdapter.clear();
 		}
+		// 去掉次重复的数据
+		for (int i = 0; i < data.size(); i++) {
+			if (compareTo(mAdapter.getData(), data.get(i))) {
+				data.remove(i);
+				i--;
+			}
+		}
+		int adapterState = ListBaseAdapter.STATE_EMPTY_ITEM;
+		if (mAdapter.getCount() + data.size() == 0) {
+			adapterState = ListBaseAdapter.STATE_EMPTY_ITEM;
+		} else if ((data.size() == 0)
+				|| (data.size() < getPageSize() && mCurrentPage == 0)) {
+            adapterState = ListBaseAdapter.STATE_NO_MORE;
+            mAdapter.notifyDataSetChanged();
+		} else {
+			adapterState = ListBaseAdapter.STATE_LOAD_MORE;
+		}
+		mAdapter.setState(adapterState);
+		mAdapter.addData(data);
+		//判断等于是因为最后一项是listview的状态
+		if(mAdapter.getCount() == 1){
+			if(needShowEmptyNoData()){
+				mErrorLayout.setErrorType(EmptyLayout.NODATA);
+			}else {
+				mAdapter.setState(ListBaseAdapter.STATE_EMPTY_ITEM);
+				mAdapter.notifyDataSetChanged();
+				
+			}
+		}
+
+	}
+	
+	/**
+	 * 是否需要隐藏listview，显示无数据状态
+	 * @return
+	 */
+	private boolean needShowEmptyNoData() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	protected int getPageSize() {
+		// TODO Auto-generated method stub
+		return AppContext.PAGE_SIZE;
+	}
+
+	protected boolean compareTo(List<? extends Entity> data, Entity entity) {
+		// TODO Auto-generated method stub
+		int s = data.size();
+		if (entity != null) {
+			for (int i = 0; i < s; i++) {
+				if (entity.getId() == data.get(i).getId()) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public void executeOnLoadDataError(String error) {
