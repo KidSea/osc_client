@@ -19,9 +19,9 @@ public class TweetPagerFragment extends BaseViewPagerFragment {
 		String[] titles = getActivity().getResources().getStringArray(
 				R.array.tweets_viewpage_arrays);
 		//添加page,并给fragment传入对应的bundle参数，在请求接口的时候用
-		fragmentAdapter.addPager(titles[0], DefaultFragment.class, getBundle(TweetsList.CATALOG_LATEST));
-		fragmentAdapter.addPager(titles[1], DefaultFragment.class, getBundle(TweetsList.CATALOG_HOT));
-		fragmentAdapter.addPager(titles[2], DefaultFragment.class, getBundle(TweetsList.CATALOG_ME));
+		fragmentAdapter.addTab(titles[0], "",DefaultFragment.class, getBundle(TweetsList.CATALOG_LATEST));
+		fragmentAdapter.addTab(titles[1], "",DefaultFragment.class, getBundle(TweetsList.CATALOG_HOT));
+		fragmentAdapter.addTab(titles[2], "",DefaultFragment.class, getBundle(TweetsList.CATALOG_ME));
 	}
 	private Bundle getBundle(int newType) {
 		Bundle bundle = new Bundle();

@@ -289,9 +289,7 @@
         <item name="android:textColor">@color/text_dark</item>
         <item name="android:gravity">center_vertical</item>
     </style>
-    <style name="dialog_common" parent="@style/Theme.Base.AppCompat.Dialog.Light.FixedSize">
-        <item name="android:windowBackground">@drawable/dialog_background</item>
-    </style>
+
     <style name="list_cell_text">
         <item name="android:textSize">16.0dip</item>
         <item name="android:textColor">@color/white</item>
@@ -314,5 +312,31 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">1.0px</item>
         <item name="android:layout_alignParentBottom">true</item>
+    
     </style>
+        <style name="quick_option_dialog" parent="@style/dialog_common">
+        <item name="android:windowBackground">@color/white40</item>
+        <item name="android:windowAnimationStyle">@style/dialog_animation</item>
+    </style>
+    
+    <!-- quick option style start -->
+    <style name="quick_option_item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/space_16</item>
+        <item name="android:background">@drawable/list_item_background</item>
+    </style>
+
+    <style name="quick_option_item_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/space_12</item>
+        <item name="android:textColor">@color/drawer_menu_text</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+    </style>
+    <!-- quick option style end -->
+    
 </resources>

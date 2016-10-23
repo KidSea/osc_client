@@ -3,11 +3,22 @@ package com.example.oschina_client.adapter;
 import java.net.ContentHandler;
 import java.util.ArrayList;
 
+import com.example.oschina_client.R;
+import com.example.oschina_client.widget.PagerSlidingTabStrip;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.PageTransformer;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 /**
  * 页面适配器
@@ -15,80 +26,98 @@ import android.support.v4.app.FragmentPagerAdapter;
  * @author yuxuehai
  * 
  */
-public class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
+@SuppressLint("Recycle")
+public class ViewPagerFragmentAdapter extends FragmentStatePagerAdapter {
 
-	private Context context;
+	private final Context mContext;
+	protected PagerSlidingTabStrip mPagerStrip;
 
-	private ArrayList<String> mTabTitles;
-	private ArrayList<FragmentInfo> mFrgmentInfo;
+	private final ViewPager mViewPager;
+	private final ArrayList<ViewPageInfo> mTabs = new ArrayList<ViewPageInfo>();
 
-	public ViewPagerFragmentAdapter(Context context, FragmentManager fm) {
+	public ViewPagerFragmentAdapter(FragmentManager fm,
+			PagerSlidingTabStrip pageStrip, ViewPager pager) {
 		super(fm);
 		// TODO Auto-generated constructor stub
-		this.context = context;
-		mTabTitles = new ArrayList<String>();
-		mFrgmentInfo = new ArrayList<ViewPagerFragmentAdapter.FragmentInfo>();
+		mContext = pager.getContext();
+		mPagerStrip = pageStrip;
+		mViewPager = pager;
+		mViewPager.setAdapter(this);
+		mPagerStrip.setViewPager(mViewPager);
 	}
-	
+
 	/**
 	 * 增加一页
+	 * 
 	 * @param title
 	 * @param clazz
 	 * @param bundle
 	 */
-	public void addPager(String title,Class<?> clazz,Bundle bundle) {
-		mTabTitles.add(title);
-		mFrgmentInfo.add(new FragmentInfo(clazz, bundle));
+	public void addTab(String title, String tag, Class<?> clazz, Bundle bundle) {
+		ViewPageInfo info = new ViewPageInfo(title, tag, clazz, bundle);
+		addFragment(info);
 	}
 
+	public void addAlltab(ArrayList<ViewPageInfo> mTabs){
+		for(ViewPageInfo viewPageInfo : mTabs){
+			addFragment(viewPageInfo);
+		}
+	}
+	
+	private void addFragment(ViewPageInfo info) {
+		// TODO Auto-generated method stub
+		if (info == null) {
+			return;
+		}
+		// tab title
+		View v = LayoutInflater.from(mContext).inflate(
+				R.layout.base_viewpage_fragment_tab_item, null,false);
+		TextView title = (TextView) v.findViewById(R.id.tab_title);
+		title.setText(info.title);
+		mPagerStrip.addTab(v);
+		
+		mTabs.add(info);
+		notifyDataSetChanged();
+	}
+
+	/**
+	 * 移除所有的tab
+	 */
+	public void removeAll(){
+		if(mTabs.isEmpty()){
+			return;
+		}
+		mPagerStrip.removeAllTab();
+		mTabs.clear();
+		notifyDataSetChanged();
+	}
+	
 	@Override
 	public Fragment getItem(int position) {
 		// TODO Auto-generated method stub
-		FragmentInfo info = mFrgmentInfo.get(position);
-		
-		return Fragment.instantiate(context, info.getClazz().getName(),info.getBundle());
+		ViewPageInfo info = mTabs.get(position);
+
+		return Fragment.instantiate(mContext, info.clss.getName(),
+				info.args);
 	}
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return mTabTitles.size();
+		return mTabs.size();
 	}
 
 	@Override
 	public CharSequence getPageTitle(int position) {
 		// TODO Auto-generated method stub
-		return mTabTitles.get(position);
+		return mTabs.get(position).title;
+	}
+	
+	@Override
+	public int getItemPosition(Object object) {
+		// TODO Auto-generated method stub
+		return PagerAdapter.POSITION_NONE;
 	}
 
-	// frgmentinfo 封装每个内容信息
-
-	public class FragmentInfo {
-
-		public Class<?> getClazz() {
-			return clazz;
-		}
-
-		public void setClazz(Class<?> clazz) {
-			this.clazz = clazz;
-		}
-
-		public Bundle getBundle() {
-			return bundle;
-		}
-
-		public void setBundle(Bundle bundle) {
-			this.bundle = bundle;
-		}
-
-		private Class<?> clazz;
-		private Bundle bundle;
-
-		public FragmentInfo(Class<?> clazz, Bundle bundle) {
-			super();
-			this.clazz = clazz;
-			this.bundle = bundle;
-		}
-	}
 
 }

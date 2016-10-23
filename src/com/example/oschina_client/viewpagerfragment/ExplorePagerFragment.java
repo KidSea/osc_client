@@ -13,8 +13,8 @@ public class ExplorePagerFragment extends BaseViewPagerFragment {
 		// TODO Auto-generated method stub
 		String[] strings = getResources().getStringArray(R.array.choose_picture);
 		
-		fragmentAdapter.addPager(strings[0], DefaultFragment.class, null);
-		fragmentAdapter.addPager(strings[1], DefaultFragment.class, null);
+		fragmentAdapter.addTab(strings[0], "",DefaultFragment.class, null);
+		fragmentAdapter.addTab(strings[1], "",DefaultFragment.class, null);
 	}
 
 }

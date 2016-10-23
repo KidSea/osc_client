@@ -110,8 +110,6 @@ public class MainActivity extends ActionBarActivity implements
 		mTabHost.setCurrentTab(0);
 		mTabHost.setOnTabChangedListener(this);
 
-
-
 	}
 
 	private void initTabs() {
@@ -130,11 +128,11 @@ public class MainActivity extends ActionBarActivity implements
 			TextView title = (TextView) indicator.findViewById(R.id.tab_title);
 			Drawable drawable = this.getResources().getDrawable(
 					mainTab.getResIcon());
-			
-			//给textview设置左上右下
+
+			// 给textview设置左上右下
 			title.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null,
 					null);
-			
+
 			if (i == 2) {
 				indicator.setVisibility(View.INVISIBLE);
 				mTabHost.setNoTabChangedTag(getString(mainTab.getResName()));
@@ -217,6 +215,24 @@ public class MainActivity extends ActionBarActivity implements
 	@Override
 	public void onClick(View v) {
 		// 弹出对话框
+		int id = v.getId();
+		switch (id) {
+		case R.id.quick_option_iv:
+			showQuickOption();
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	// 显示快速操作界面
+	private void showQuickOption() {
+		// TODO Auto-generated method stub
+		final QuickOptionDialog dialog = new QuickOptionDialog(MainActivity.this);
+		dialog.setCancelable(true);
+		dialog.setCanceledOnTouchOutside(true);
+		dialog.show();
 	}
 
 	@Override

@@ -2,6 +2,9 @@ package com.example.oschina_client.ui;
 
 import com.example.oschina_client.R;
 import com.example.oschina_client.fragment.DefaultFragment;
+import com.example.oschina_client.viewpagerfragment.ExplorePagerFragment;
+import com.example.oschina_client.viewpagerfragment.NewsPagerFragment;
+import com.example.oschina_client.viewpagerfragment.TweetPagerFragment;
 
 
 /**
@@ -11,16 +14,16 @@ import com.example.oschina_client.fragment.DefaultFragment;
  */
 public enum MainTab {
 	NEWS(0, R.string.main_tab_name_news, R.drawable.tab_icon_new,
-			DefaultFragment.class),
+			NewsPagerFragment.class),
 
 	TWEET(1, R.string.main_tab_name_tweet, R.drawable.tab_icon_tweet,
-			DefaultFragment.class),
+			TweetPagerFragment.class),
 
 	QUICK(2, R.string.main_tab_name_quick, R.drawable.tab_icon_new,
 			null),
 
 	EXPLORE(3, R.string.main_tab_name_explore, R.drawable.tab_icon_explore,
-			DefaultFragment.class),
+			ExplorePagerFragment.class),
 			
 	ME(4, R.string.main_tab_name_my, R.drawable.tab_icon_me,
 			DefaultFragment.class);

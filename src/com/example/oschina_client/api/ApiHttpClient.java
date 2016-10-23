@@ -14,7 +14,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 /**
- * 网络请求信息类
+ * 网络请求信息类 ，http请求层封装
  * @author yuxuehai
  *
  */
@@ -23,13 +23,15 @@ public class ApiHttpClient {
     public final static String HOST = "www.oschina.net";
     private static String API_URL = "http://www.oschina.net/%s";
     
-    public final static String HOST_LOCAL = "http://192.168.1.101:8080";
-    private static String API_URL_LOCAL = HOST_LOCAL+"/%s";
+    public final static String HOST_LOCAL = "113.250.157.40";
+    private static String API_URL_LOCAL = "http://113.250.157.40:8080/%s";
      
     // public final static String HOST = "192.168.1.46";
     // private static String API_URL = "http://192.168.1.46/%s";
+    public static final String DELETE = "DELETE";
     public static final String GET = "GET";
     public static final String POST = "POST";
+    public static final String PUT = "PUT";
     public static AsyncHttpClient client;
 
     public ApiHttpClient() {}
@@ -44,6 +46,11 @@ public class ApiHttpClient {
 
     public static void clearUserCookies(Context context) {
         // (new HttpClientCookieStore(context)).a();
+    }
+    
+    public static void delete(String partUrl,AsyncHttpResponseHandler handler){
+    	client.delete(getAbsoluteApiUrl(partUrl), handler);
+    	log(new StringBuilder("DELETE").append(partUrl).toString());
     }
 
     public static void get(String partUrl, AsyncHttpResponseHandler handler) {
@@ -126,6 +133,18 @@ public class ApiHttpClient {
         log(new StringBuilder("POST ").append(url).append("&").append(params)
                 .toString());
     }
+    
+    public static void put(String parUrl,AsyncHttpResponseHandler handler){
+    	 client.put(getAbsoluteApiUrl(parUrl), handler);
+    }
+    
+    public static void put(String partUrl, RequestParams params,
+            AsyncHttpResponseHandler handler) {
+        client.put(getAbsoluteApiUrl(partUrl), params, handler);
+        log(new StringBuilder("PUT ").append(partUrl).append("&")
+                .append(params).toString());
+    }
+    
 
     public static void setApiUrl(String apiUrl) {
         API_URL = apiUrl;
