@@ -234,7 +234,7 @@ public class UIHelper {
 //     * 动态点击跳转到相关新闻、帖子等
 //     * 
 //     * @param context
-//     * @param id
+//     * @param id 
 //     * @param catalog
 //     *            0其他 1新闻 2帖子 3动弹 4博客
 //     */

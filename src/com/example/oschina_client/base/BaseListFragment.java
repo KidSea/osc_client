@@ -414,7 +414,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
 		return null;
 	}
 
-	public void executeOnLoadDataSuccess(List<T> data) {
+	protected void executeOnLoadDataSuccess(List<T> data) {
 		// TODO Auto-generated method stub
 		if (data == null) {
 			data = new ArrayList<T>();
