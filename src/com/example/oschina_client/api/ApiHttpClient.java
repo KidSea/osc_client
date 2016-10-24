@@ -23,8 +23,8 @@ public class ApiHttpClient {
     public final static String HOST = "www.oschina.net";
     private static String API_URL = "http://www.oschina.net/%s";
     
-    public final static String HOST_LOCAL = "113.250.157.40";
-    private static String API_URL_LOCAL = "http://113.250.157.40:8080/%s";
+    public final static String HOST_LOCAL = "113.251.166.87";
+    private static String API_URL_LOCAL = "http://113.251.166.87:8080/%s";
      
     // public final static String HOST = "192.168.1.46";
     // private static String API_URL = "http://192.168.1.46/%s";

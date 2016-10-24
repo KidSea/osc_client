@@ -1,14 +1,14 @@
 <resources>
-    
+
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -16,13 +16,13 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
+
     <style name="Widget"></style>
 
     <style name="Widget.ProgressBar">
         <item name="android:indeterminateDrawable">@drawable/progress_medium_holo</item>
     </style>
-    
+
     <style name="TitleStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/white</item>
     </style>
@@ -34,12 +34,13 @@
     <style name="OverflowButton" parent="@style/Widget.AppCompat.ActionButton.Overflow">
         <item name="android:src">@drawable/actionbar_more_icon_normal</item>
     </style>
-    
+
     <style name="PopupMenu.ListPopupWindow" parent="@style/Widget.AppCompat.Light.Base.ListPopupWindow">
-        <!--<item name="android:popupBackground">@color/menu_dropdown_panel_dark</item>-->
+
+        <!-- <item name="android:popupBackground">@color/menu_dropdown_panel_dark</item> -->
         <item name="android:textStyle">bold</item>
     </style>
-    
+
     <style name="ActionBarBaseStyle" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="background">@color/actionbar_background</item>
         <item name="titleTextStyle">@style/TitleStyle</item>
@@ -51,7 +52,7 @@
         <item name="android:background">@color/transparent</item>
         <item name="background">@color/transparent</item>
     </style>
-    
+
     <style name="ActionBarBaseTheme" parent="@style/Theme.AppCompat.Light">
         <item name="android:windowBackground">@color/window_background</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.ListPopupWindow</item>
@@ -68,26 +69,26 @@
         <item name="actionBarStyle">@style/ActionBarBaseStyle.Transparent</item>
         <item name="windowActionBarOverlay">true</item>
     </style>
-    
-	<style name="Theme.AppStartLoad" parent="android:Theme.Black.NoTitleBar.Fullscreen">
+
+    <style name="Theme.AppStartLoad" parent="android:Theme.Black.NoTitleBar.Fullscreen">
         <item name="android:windowBackground">@drawable/welcome</item>
         <item name="android:windowNoTitle">true</item>
     </style>
-    
+
     <style name="SpinnerDropDownListView" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
         <item name="android:divider">#3f3f3f</item>
         <item name="android:dividerHeight">1dp</item>
     </style>
-    
+
     <style name="mylistPopupWindowStyle" parent="@style/Widget.AppCompat.Light.PopupMenu">
         <item name="android:dropDownSelector">#343434</item>
         <item name="android:popupBackground">#343434</item>
-    </style>   
-    
-	<style name="dialog_waiting" parent="@android:style/Theme.Dialog">
+    </style>
+
+    <style name="dialog_waiting" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
-    
+
     <style name="dialog_button">
         <item name="android:textSize">@dimen/text_regular_primary_size</item>
         <item name="android:textColor">@color/text_dark</item>
@@ -106,13 +107,13 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">1.0px</item>
     </style>
-    
+
     <style name="section_item_divider_vertical">
         <item name="android:background">@color/ui_dialog_divider</item>
         <item name="android:layout_width">0.1px</item>
         <item name="android:layout_height">fill_parent</item>
     </style>
-    
+
     <!-- app main menu style start! -->
     <!-- 菜单layout的样式 -->
     <style name="MenuItemLayoutStyle">
@@ -142,8 +143,9 @@
         <item name="android:textSize">@dimen/text_size_16</item>
     </style>
     <!-- app main menu style end! -->
-    
-      <!-- 操作项样式 start -->
+
+
+    <!-- 操作项样式 start -->
     <style name="option_item_rl">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -175,11 +177,11 @@
         <item name="android:drawablePadding">@dimen/space_8</item>
         <item name="android:textColor">#666</item>
     </style>
-    
+
     <style name="option_item_text_fa" parent="@style/option_item_text_parent">
         <item name="android:layout_marginRight">10dp</item>
-		<item name="android:textColor">@color/main_green</item>  
-		<item name="android:textSize">22sp</item>      
+        <item name="android:textColor">@color/main_green</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="option_item_goto_right">
@@ -201,7 +203,7 @@
         <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>
         <item name="@android:windowExitAnimation">@anim/dialog_exit</item>
     </style>
-    
+
     <style name="dialog_common" parent="@style/Theme.Base.AppCompat.Dialog.Light.FixedSize">
         <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
@@ -210,7 +212,7 @@
         <item name="android:windowBackground">@drawable/dialog_bottom_background</item>
         <item name="android:windowAnimationStyle">@style/dialog_animation</item>
     </style>
-    
+
     <!-- viewpage文本  滑动标签标题 -->
     <style name="viewpage_slidingTabTitle">
         <item name="android:layout_width">wrap_content</item>
@@ -219,25 +221,25 @@
         <item name="android:textColor">@color/viewpage_selector_slide_title</item>
         <item name="android:textSize">17sp</item>
     </style>
-    
-        <!-- 加载滚动条样式 -->
+
+    <!-- 加载滚动条样式 -->
     <style name="loading">
         <item name="android:indeterminate">true</item>
         <item name="android:indeterminateDrawable">@drawable/progressloading</item>
         <item name="android:indeterminateDuration">1000</item>
         <item name="android:indeterminateOnly">true</item>
     </style>
-    
+
     <style name="wrap_view">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    
+
     <style name="fullline_view">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-    </style>   
-     
+    </style>
+
     <style name="text_base" parent="@style/wrap_view">
         <item name="android:textSize">@dimen/text_regular_primary_size</item>
         <item name="android:textColor">@color/text_dark</item>
@@ -245,13 +247,13 @@
         <item name="android:maxLines">1</item>
         <item name="android:singleLine">true</item>
     </style>
-        
+
     <style name="text_multiline" parent="@style/text_base">
         <item name="android:maxLines">5</item>
         <item name="android:singleLine">false</item>
         <item name="android:lineSpacingMultiplier">1.15</item>
     </style>
-    
+
     <style name="dialog_divider">
         <item name="android:layout_gravity">bottom</item>
         <item name="android:background">@color/light_gray</item>
@@ -312,13 +314,13 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">1.0px</item>
         <item name="android:layout_alignParentBottom">true</item>
-    
     </style>
-        <style name="quick_option_dialog" parent="@style/dialog_common">
+
+    <style name="quick_option_dialog" parent="@style/dialog_common">
         <item name="android:windowBackground">@color/white40</item>
         <item name="android:windowAnimationStyle">@style/dialog_animation</item>
     </style>
-    
+
     <!-- quick option style start -->
     <style name="quick_option_item">
         <item name="android:layout_width">0dp</item>
@@ -338,5 +340,13 @@
         <item name="android:textSize">@dimen/text_size_12</item>
     </style>
     <!-- quick option style end -->
-    
+
+    <style name="user_face_image">
+        <item name="android:layout_width">40.0dip</item>
+        <item name="android:layout_height">40.0dip</item>
+        <item name="android:padding">1.0dip</item>
+        <item name="android:clickable">true</item>
+        <item name="android:src">@drawable/widget_dface</item>
+    </style>
+
 </resources>

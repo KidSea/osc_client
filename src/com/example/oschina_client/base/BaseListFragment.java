@@ -140,7 +140,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
 	 * 
 	 * @return
 	 */
-	private long getAutoRefreshTime() {
+	protected long getAutoRefreshTime() {
 		// TODO Auto-generated method stub
 		return 12 * 60 * 60;// 12小时更新一次
 	}
