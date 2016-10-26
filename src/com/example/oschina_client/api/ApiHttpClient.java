@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.oschina_client.AppContext;
 import com.example.oschina_client.utils.TLog;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -23,9 +24,9 @@ public class ApiHttpClient {
     public final static String HOST = "www.oschina.net";
     private static String API_URL = "http://www.oschina.net/%s";
     
-    public final static String HOST_LOCAL = "113.251.166.87";
-    private static String API_URL_LOCAL = "http://113.251.166.87:8080/%s";
-     
+    public final static String HOST_LOCAL = "113.250.153.35";
+    private static String API_URL_LOCAL = "http://113.250.153.35:8080/%s";
+    
     // public final static String HOST = "192.168.1.46";
     // private static String API_URL = "http://192.168.1.46/%s";
     public static final String DELETE = "DELETE";
@@ -47,10 +48,10 @@ public class ApiHttpClient {
     public static void clearUserCookies(Context context) {
         // (new HttpClientCookieStore(context)).a();
     }
-    
-    public static void delete(String partUrl,AsyncHttpResponseHandler handler){
-    	client.delete(getAbsoluteApiUrl(partUrl), handler);
-    	log(new StringBuilder("DELETE").append(partUrl).toString());
+
+    public static void delete(String partUrl, AsyncHttpResponseHandler handler) {
+        client.delete(getAbsoluteApiUrl(partUrl), handler);
+        log(new StringBuilder("DELETE ").append(partUrl).toString());
     }
 
     public static void get(String partUrl, AsyncHttpResponseHandler handler) {
@@ -66,7 +67,7 @@ public class ApiHttpClient {
     }
 
     /**
-     * 获取局域网服务器数据
+     * 鑾峰彇灞�鍩熺綉鏈嶅姟鍣ㄦ暟鎹�
      * @param partUrl
      * @param params
      * @param handler
@@ -77,7 +78,7 @@ public class ApiHttpClient {
     }
 
     /**
-     * 获取局域网服务器数据
+     * 鑾峰彇灞�鍩熺綉鏈嶅姟鍣ㄦ暟鎹�
      * @param partUrl
      * @param params
      * @param handler
@@ -133,18 +134,18 @@ public class ApiHttpClient {
         log(new StringBuilder("POST ").append(url).append("&").append(params)
                 .toString());
     }
-    
-    public static void put(String parUrl,AsyncHttpResponseHandler handler){
-    	 client.put(getAbsoluteApiUrl(parUrl), handler);
+
+    public static void put(String partUrl, AsyncHttpResponseHandler handler) {
+        client.put(getAbsoluteApiUrl(partUrl), handler);
+        log(new StringBuilder("PUT ").append(partUrl).toString());
     }
-    
+
     public static void put(String partUrl, RequestParams params,
             AsyncHttpResponseHandler handler) {
         client.put(getAbsoluteApiUrl(partUrl), params, handler);
         log(new StringBuilder("PUT ").append(partUrl).append("&")
                 .append(params).toString());
     }
-    
 
     public static void setApiUrl(String apiUrl) {
         API_URL = apiUrl;

@@ -209,7 +209,7 @@ public class UIHelper {
             String objId = news.getNewType().getAttachment();
             switch (newsType) {
             case News.NEWSTYPE_NEWS:
-                showNewsDetail(context, newsId, news.getCommentCount());
+                //showNewsDetail(context, newsId, news.getCommentCount());
                 break;
 //            case News.NEWSTYPE_SOFTWARE:
 //                showSoftwareDetail(context, objId);

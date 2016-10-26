@@ -17,74 +17,63 @@ import android.widget.TextView;
  *
  */
 public class EmptyLayout extends LinearLayout implements OnClickListener {
-
-	
     public static final int HIDE_LAYOUT = 4;
     public static final int NETWORK_ERROR = 1;
     public static final int NETWORK_LOADING = 2;
     public static final int NODATA = 3;
     public static final int NODATA_ENABLE_CLICK = 5;
     public static final int NO_LOGIN = 6;
-	
-    private Context context;
+
+    private ProgressBar animProgress;
     private boolean clickEnable = true;
+    private final Context context;
+    public ImageView img;
     private android.view.View.OnClickListener listener;
-	private RelativeLayout mLayout;
-	private ImageView img;
-	private TextView tv;
-	private ProgressBar pb;
+    private int mErrorState;
+    private RelativeLayout mLayout;
     private String strNoDataContent = "";
-	private int mErrorState;
-    
-    
-	public EmptyLayout(Context context) {
-		super(context);
-		// TODO Auto-generated constructor stub
-		this.context = context;
-		initView();
-	}
+    private TextView tv;
 
-	public EmptyLayout(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		this.context = context;
-		initView();
+    public EmptyLayout(Context context) {
+        super(context);
+        this.context = context;
+        init();
+    }
 
-	}
-	
-	private void initView() {
-		// TODO Auto-generated method stub
-		View view = inflate(context, R.layout.view_error_layout, null);
-		mLayout = (RelativeLayout) view.findViewById(R.id.pageerrLayout);
-		img = (ImageView) view.findViewById(R.id.img_error_layout);
-		tv = (TextView) view.findViewById(R.id.tv_error_layout);
-		pb = (ProgressBar) view.findViewById(R.id.animProgress);
-		
-		setBackgroundColor(-1);
-		setOnClickListener(this);
-		
-		img.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if(clickEnable){
-					if(listener != null){
-						listener.onClick(v);
-					}
-				}
-			}
-		});
-		
-		addView(view);
-		
-		changeErrorLayoutBgMode(context);
-		
-	}
+    public EmptyLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.context = context;
+        init();
+    }
 
-	private void changeErrorLayoutBgMode(Context context2) {
-		// TODO Auto-generated method stub
-		
-	}
+    private void init() {
+        View view = View.inflate(context, R.layout.view_error_layout, null);
+        img = (ImageView) view.findViewById(R.id.img_error_layout);
+        tv = (TextView) view.findViewById(R.id.tv_error_layout);
+        mLayout = (RelativeLayout) view.findViewById(R.id.pageerrLayout);
+        animProgress = (ProgressBar) view.findViewById(R.id.animProgress);
+        setBackgroundColor(-1);
+        setOnClickListener(this);
+        img.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (clickEnable) {
+                    // setErrorType(NETWORK_LOADING);
+                    if (listener != null)
+                        listener.onClick(v);
+                }
+            }
+        });
+        addView(view);
+        changeErrorLayoutBgMode(context);
+    }
+
+    public void changeErrorLayoutBgMode(Context context1) {
+        // mLayout.setBackgroundColor(SkinsUtil.getColor(context1,
+        // "bgcolor01"));
+        // tv.setTextColor(SkinsUtil.getColor(context1, "textcolor05"));
+    }
 
     public void dismiss() {
         mErrorState = HIDE_LAYOUT;
@@ -102,17 +91,16 @@ public class EmptyLayout extends LinearLayout implements OnClickListener {
     public boolean isLoading() {
         return mErrorState == NETWORK_LOADING;
     }
-	
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		if(clickEnable){
-			if(listener != null){
-				listener.onClick(v);
-			}
-		}
-	}
-	
+
+    @Override
+    public void onClick(View v) {
+        if (clickEnable) {
+            // setErrorType(NETWORK_LOADING);
+            if (listener != null)
+                listener.onClick(v);
+        }
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -141,7 +129,7 @@ public class EmptyLayout extends LinearLayout implements OnClickListener {
     /**
      * 新添设置背景
      * 
-     * @author yuxuehai
+     * @author 火蚁 2015-1-27 下午2:14:00
      * 
      */
     public void setErrorImag(int imgResource) {
@@ -165,13 +153,13 @@ public class EmptyLayout extends LinearLayout implements OnClickListener {
                 img.setBackgroundResource(R.drawable.page_icon_network);
 //            }
             img.setVisibility(View.VISIBLE);
-            pb.setVisibility(View.GONE);
+            animProgress.setVisibility(View.GONE);
             clickEnable = true;
             break;
         case NETWORK_LOADING:
             mErrorState = NETWORK_LOADING;
             // animProgress.setBackgroundDrawable(SkinsUtil.getDrawable(context,"loadingpage_bg"));
-            pb.setVisibility(View.VISIBLE);
+            animProgress.setVisibility(View.VISIBLE);
             img.setVisibility(View.GONE);
             tv.setText(R.string.error_view_loading);
             clickEnable = false;
@@ -181,7 +169,7 @@ public class EmptyLayout extends LinearLayout implements OnClickListener {
             // img.setBackgroundDrawable(SkinsUtil.getDrawable(context,"page_icon_empty"));
             img.setBackgroundResource(R.drawable.page_icon_empty);
             img.setVisibility(View.VISIBLE);
-            pb.setVisibility(View.GONE);
+            animProgress.setVisibility(View.GONE);
             setTvNoDataContent();
             clickEnable = true;
             break;
@@ -193,7 +181,7 @@ public class EmptyLayout extends LinearLayout implements OnClickListener {
             img.setBackgroundResource(R.drawable.page_icon_empty);
             // img.setBackgroundDrawable(SkinsUtil.getDrawable(context,"page_icon_empty"));
             img.setVisibility(View.VISIBLE);
-            pb.setVisibility(View.GONE);
+            animProgress.setVisibility(View.GONE);
             setTvNoDataContent();
             clickEnable = true;
             break;

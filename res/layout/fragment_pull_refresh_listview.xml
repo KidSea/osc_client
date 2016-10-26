@@ -24,10 +24,10 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <com.example.oschina_client.empty.EmptyLayout
-        android:id="@+id/empty"
+        android:id="@+id/error_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible" >
-    </com.example.oschina_client.empty.EmptyLayout>
+        android:visibility="visible" />
+   
 
 </RelativeLayout>

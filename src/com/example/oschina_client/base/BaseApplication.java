@@ -1,6 +1,7 @@
 package com.example.oschina_client.base;
 
 
+
 import com.example.oschina_client.R;
 import com.example.oschina_client.utils.StringUtils;
 
@@ -21,15 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * 应用基类,提供一些基类方法
- * 
- * @author yuxuehai
- * 
- */
 @SuppressLint("InflateParams")
 public class BaseApplication extends Application {
-
 	private static String PREF_NAME = "creativelocker.pref";
 	private static String LAST_REFRESH_TIME = "last_refresh_time.pref";
 	static Context _context;
@@ -47,7 +41,6 @@ public class BaseApplication extends Application {
 
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		super.onCreate();
 		_context = getApplicationContext();
 		_resource = _context.getResources();
@@ -64,9 +57,7 @@ public class BaseApplication extends Application {
 	/**
 	 * 放入已读文章列表中
 	 * 
-	 * @param prefFileName
-	 * @param key
-	 * @param value
+	 * @param id
 	 */
 	public static void putReadedPostList(String prefFileName, String key,
 			String value) {
@@ -82,8 +73,8 @@ public class BaseApplication extends Application {
 
 	/**
 	 * 读取是否是已读的文章列表
-	 * @param prefFileName
-	 * @param key
+	 * 
+	 * @param id
 	 * @return
 	 */
 	public static boolean isOnReadedPostList(String prefFileName, String key) {
@@ -92,6 +83,8 @@ public class BaseApplication extends Application {
 
 	/***
 	 * 记录列表上次刷新时间
+	 * 
+	 * @author 火蚁 2015-2-9 下午2:21:37
 	 * 
 	 * @return void
 	 * @param key
@@ -106,6 +99,8 @@ public class BaseApplication extends Application {
 
 	/***
 	 * 获取列表的上次刷新时间
+	 * 
+	 * @author 火蚁 2015-2-9 下午2:22:04
 	 * 
 	 * @return String
 	 * @param key

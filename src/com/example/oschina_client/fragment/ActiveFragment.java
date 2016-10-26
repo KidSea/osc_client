@@ -30,102 +30,89 @@ import com.example.oschina_client.utils.XmlUtils;
 
 
 public class ActiveFragment extends BaseListFragment<Active> implements OnItemLongClickListener {
+    protected static final String TAG = ActiveFragment.class.getSimpleName();
+    private static final String CACHE_KEY_PREFIX = "active_list";
+    private boolean mIsWatingLogin; // 还没登陆
 
-	protected static final String TAG = ActiveFragment.class.getSimpleName();
-	private static final String CACHE_KEY_PREFIX = "active_list";
-	private boolean mIsWatingLogin;
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (mErrorLayout != null) {
+                mIsWatingLogin = true;
+                mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                mErrorLayout.setErrorMessage(getString(R.string.unlogin_tip));
+            }
+        }
+    };
 
-	private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        IntentFilter filter = new IntentFilter(Constants.INTENT_ACTION_LOGOUT);
+        getActivity().registerReceiver(mReceiver, filter);
+    }
 
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			// TODO Auto-generated method stub
-			if (mErrorLayout != null) {
-				mIsWatingLogin = true;
-				mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
-				mErrorLayout.setErrorMessage(getString(R.string.unlogin_tip));
+    @Override
+    public void onDestroy() {
+        getActivity().unregisterReceiver(mReceiver);
+        super.onDestroy();
+    }
 
-			}
-		}
-	};
+    @Override
+    public void onResume() {
+        if (mIsWatingLogin) {
+            mCurrentPage = 0;
+            mState = STATE_REFRESH;
+            requestData(false);
+        }
+        refreshNotice();
+        super.onResume();
+    }
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		IntentFilter filter = new IntentFilter(Constants.INTENT_ACTION_LOGOUT);
-		getActivity().registerReceiver(mReceiver, filter);
-	}
+    /**
+     * 开始刷新请求
+     */
+    private void refreshNotice() {
+//        Notice notice = MainActivity.mNotice;
+//        if (notice == null) {
+//            return;
+//        }
+//        if (notice.getAtmeCount() > 0 && mCatalog == ActiveList.CATALOG_ATME) {
+//            onRefresh();
+//        } else if (notice.getReviewCount() > 0
+//                && mCatalog == ActiveList.CATALOG_COMMENT) {
+//            onRefresh();
+//        }
+    }
 
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		getActivity().unregisterReceiver(mReceiver);
-		super.onDestroy();
-	}
+    @Override
+    protected ActiveAdapter getListAdapter() {
+        return new ActiveAdapter();
+    }
 
-	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-		if (mIsWatingLogin) {
-			mCurrentPage = 0;
-			mState = STATE_REFRESH;
-			requestData(false);
-		}
-		refreshNotice();
-		super.onResume();
-	}
+    @Override
+    protected String getCacheKeyPrefix() {
+        return new StringBuffer(CACHE_KEY_PREFIX + mCatalog).append(
+                AppContext.getInstance().getLoginUid()).toString();
+    }
 
-	/**
-	 * 开始刷新请求
-	 */
-	private void refreshNotice() {
-		// TODO Auto-generated method stub
-		// Notice notice = MainActivity.mNotice;
-		// if (notice == null) {
-		// return;
-		// }
-		// if (notice.getAtmeCount() > 0 && mCatalog == ActiveList.CATALOG_ATME)
-		// {
-		// onRefresh();
-		// } else if (notice.getReviewCount() > 0
-		// && mCatalog == ActiveList.CATALOG_COMMENT) {
-		// onRefresh();
-		// }
-	}
+    @Override
+    protected ActiveList parseList(InputStream is) {
+        ActiveList list = XmlUtils.toBean(ActiveList.class, is);
+        return list;
+    }
 
-	@Override
-	protected ActiveAdapter getListAdapter() {
-		// TODO Auto-generated method stub
-		return new ActiveAdapter();
-	}
+    @Override
+    protected ActiveList readList(Serializable seri) {
+        return ((ActiveList) seri);
+    }
 
-	@Override
-	protected String getCacheKeyPrefix() {
-		// TODO Auto-generated method stub
-		return new StringBuffer(CACHE_KEY_PREFIX + mCatalog).append(
-				AppContext.getInstance().getLoginUid()).toString();
-	}
-	
-	@Override
-	protected ActiveList parseList(InputStream is) throws Exception {
-		// TODO Auto-generated method stub
-		ActiveList list = XmlUtils.toBean(ActiveList.class, is);
-		return list;
-	}
-	
-	@Override
-	protected ListEntity<Active> readList(Serializable seri) {
-		// TODO Auto-generated method stub
-		return	((ActiveList) seri);
-	}
-	
-	@Override
-	public void initView() {
-		// TODO Auto-generated method stub
+    @Override
+    public void initView(View view) {
         if (mCatalog == ActiveList.CATALOG_LASTEST) {
             setHasOptionsMenu(true);
         }
-		super.initView();
+        super.initView(view);
         mListView.setOnItemLongClickListener(this);
         mListView.setOnItemClickListener(this);
         mErrorLayout.setOnLayoutClickListener(new View.OnClickListener() {
@@ -142,7 +129,7 @@ public class ActiveFragment extends BaseListFragment<Active> implements OnItemLo
         if (AppContext.getInstance().isLogin()) {
 //            UIHelper.sendBroadcastForNotice(getActivity());
         }
-	}
+    }
 
     @Override
     protected void requestData(boolean refresh) {
@@ -155,13 +142,13 @@ public class ActiveFragment extends BaseListFragment<Active> implements OnItemLo
             mErrorLayout.setErrorMessage(getString(R.string.unlogin_tip));
         }
     }
-    
+
     @Override
     protected void sendRequestData() {
         OSChinaApi.getActiveList(AppContext.getInstance().getLoginUid(),
                 mCatalog, mCurrentPage, mHandler);
     }
-    
+
     @Override
     protected void onRefreshNetworkSuccess() {
 //        if (AppContext.getInstance().isLogin()) {
@@ -183,11 +170,11 @@ public class ActiveFragment extends BaseListFragment<Active> implements OnItemLo
         Active active = mAdapter.getItem(position);
 //        if (active != null)
 //            UIHelper.showActiveRedirect(view.getContext(), active);
-    }  
-	@Override
-	public boolean onItemLongClick(AdapterView<?> parent, View view,
-			int position, long id) {
-		// TODO Auto-generated method stub
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view,
+            int position, long id) {
         final Active active = mAdapter.getItem(position);
         if (active == null)
             return false;
@@ -206,15 +193,14 @@ public class ActiveFragment extends BaseListFragment<Active> implements OnItemLo
 //        });
 //        dialog.show();
         return true;
-	}
-	
-	@Override
-	protected long getAutoRefreshTime() {
-		// TODO Auto-generated method stub
+    }
+
+    @Override
+    protected long getAutoRefreshTime() {
         // 最新动态，即是好友圈
         if (mCatalog == ActiveList.CATALOG_LASTEST) {
             return 5 * 60;
         }
         return super.getAutoRefreshTime();
-	}
+    }
 }

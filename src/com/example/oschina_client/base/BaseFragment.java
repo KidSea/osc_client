@@ -2,6 +2,7 @@ package com.example.oschina_client.base;
 
 import java.util.zip.Inflater;
 
+import com.example.oschina_client.interf.BaseFragmentInterface;
 import com.example.oschina_client.interf.BaseViewInterface;
 
 import android.os.Bundle;
@@ -19,7 +20,7 @@ import android.view.ViewGroup;
  * 
  */
 public class BaseFragment extends Fragment implements OnClickListener,
-		BaseViewInterface {
+		BaseFragmentInterface {
 	public static final int STATE_NONE = 0;
 	public static final int STATE_REFRESH = 1;
 	public static final int STATE_LOADMORE = 2;
@@ -70,7 +71,7 @@ public class BaseFragment extends Fragment implements OnClickListener,
 	}
 
 	@Override
-	public void initView() {
+	public void initView(View view) {
 		// TODO Auto-generated method stub
 
 	}

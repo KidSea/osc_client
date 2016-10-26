@@ -3,7 +3,7 @@ package com.example.oschina_client.viewpagerfragment;
 import android.os.Bundle;
 
 import com.example.oschina_client.R;
-import com.example.oschina_client.adapter.ViewPagerFragmentAdapter;
+import com.example.oschina_client.adapter.ViewPageFragmentAdapter;
 import com.example.oschina_client.base.BaseListFragment;
 import com.example.oschina_client.base.BaseViewPagerFragment;
 import com.example.oschina_client.bean.TweetsList;
@@ -14,7 +14,7 @@ import com.example.oschina_client.fragment.DefaultFragment;
 public class TweetPagerFragment extends BaseViewPagerFragment {
 
 	@Override
-	protected void addPagetoAdapter(ViewPagerFragmentAdapter fragmentAdapter) {
+	protected void addPagetoAdapter(ViewPageFragmentAdapter fragmentAdapter) {
 		// TODO Auto-generated method stub
 		String[] titles = getActivity().getResources().getStringArray(
 				R.array.tweets_viewpage_arrays);

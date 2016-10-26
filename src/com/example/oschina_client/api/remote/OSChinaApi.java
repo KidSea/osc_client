@@ -1,12 +1,12 @@
 package com.example.oschina_client.api.remote;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.kymjs.kjframe.utils.KJLoger;
 
 import android.text.TextUtils;
+
 
 import com.example.oschina_client.AppContext;
 import com.example.oschina_client.api.ApiHttpClient;
@@ -16,15 +16,20 @@ import com.example.oschina_client.bean.TweetsList;
 import com.example.oschina_client.utils.TLog;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
+/**
+ * HTTP业务逻辑层封装
+ * @author yuxuehai
+ *
+ */
 public class OSChinaApi {
-	
-	/**
-	 * 登录
-	 * @param username
-	 * @param password
-	 * @param handler
-	 */
+
+    /**
+     * 登陆
+     * 
+     * @param username
+     * @param password
+     * @param handler
+     */
     public static void login(String username, String password,
             AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
@@ -34,7 +39,7 @@ public class OSChinaApi {
         String loginurl = "action/api/login_validate";
         ApiHttpClient.post(loginurl, params, handler);
     }
- 
+
     /**
      * 获取新闻列表
      * 
@@ -71,12 +76,7 @@ public class OSChinaApi {
 
         ApiHttpClient.getLocal(path, params, handler);
     }
-    /**
-     * 获取博客列表
-     * @param type
-     * @param pageIndex
-     * @param handler
-     */
+
     public static void getBlogList(String type, int pageIndex,
             AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
@@ -94,12 +94,7 @@ public class OSChinaApi {
         
         ApiHttpClient.getLocal(path, params, handler);
     }
-    /**
-     * 获得提交列表
-     * @param catalog
-     * @param page
-     * @param handler
-     */
+
     public static void getPostList(int catalog, int page,
             AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
@@ -108,7 +103,7 @@ public class OSChinaApi {
         params.put("pageSize", AppContext.PAGE_SIZE);
         ApiHttpClient.get("action/api/post_list", params, handler);
     }
-    
+
     public static void getPostListByTag(String tag, int page,
             AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
@@ -117,7 +112,7 @@ public class OSChinaApi {
         params.put("pageSize", AppContext.PAGE_SIZE);
         ApiHttpClient.get("action/api/post_list", params, handler);
     }
-    
+
     public static void getTweetList(int uid, int page,
             AsyncHttpResponseHandler handler) {
     	
@@ -1004,5 +999,4 @@ public class OSChinaApi {
         params.put("uuid", uuid);
         ApiHttpClient.getDirect(url, handler);
     }
-    
 }

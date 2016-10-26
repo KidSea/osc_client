@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
 import com.example.oschina_client.R;
-import com.example.oschina_client.adapter.ViewPagerFragmentAdapter;
+
+
+import com.example.oschina_client.adapter.ViewPageFragmentAdapter;
 import com.example.oschina_client.base.BaseListFragment;
 import com.example.oschina_client.base.BaseViewPagerFragment;
 import com.example.oschina_client.bean.BlogList;
 import com.example.oschina_client.bean.NewsList;
 import com.example.oschina_client.fragment.DefaultFragment;
+import com.example.oschina_client.fragment.NewsFragment;
 
 /**
  * 资讯Viewpager页面
@@ -23,7 +26,7 @@ public class NewsPagerFragment extends BaseViewPagerFragment {
 	// 通过ViewPageFragmentAdapter执行添加Tab操作, 添加一个Tab, 导航条就多一个选项,
 	// 点击就可以跳转到指定Fragment
 	@Override
-	protected void addPagetoAdapter(ViewPagerFragmentAdapter fragmentAdapter) {
+	protected void addPagetoAdapter(ViewPageFragmentAdapter fragmentAdapter) {
 		// TODO Auto-generated method stub
 		String[] titles = getActivity().getResources().getStringArray(
 				R.array.news_viewpage_arrays);
@@ -43,10 +46,10 @@ public class NewsPagerFragment extends BaseViewPagerFragment {
 		// 添加page,并给fragment传入对应的bundle参数，在请求接口的时候用
 
 		// 资讯
-		fragmentAdapter.addTab(titles[0], "news", DefaultFragment.class,
+		fragmentAdapter.addTab(titles[0], "news", NewsFragment.class,
 				getBundle(NewsList.CATALOG_ALL));
 		// 热点
-		fragmentAdapter.addTab(titles[1], "news_week", DefaultFragment.class,
+		fragmentAdapter.addTab(titles[1], "news_week", NewsFragment.class,
 				getBundle(NewsList.CATALOG_WEEK));
 		// 博客
 		fragmentAdapter.addTab(titles[2], "latest_blog", DefaultFragment.class,
@@ -66,7 +69,6 @@ public class NewsPagerFragment extends BaseViewPagerFragment {
 	@Override
 	protected void setScreenPageLimit(ViewPager mViewPager) {
 		// TODO Auto-generated method stub
-		super.setScreenPageLimit(mViewPager);
 		mViewPager.setOffscreenPageLimit(3);
 	}
 	/**
