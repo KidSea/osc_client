@@ -224,13 +224,13 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
      * @param refresh
      */
     protected void requestData(boolean refresh) {
-//        String key = getCacheKey();
-//        if (isReadCacheData(refresh)) {
-//            readCacheData(key);
-//        } else {
-            // 取新的数据
+        String key = getCacheKey();
+        if (isReadCacheData(refresh)) {
+            readCacheData(key);
+        } else {
+             //取新的数据
             sendRequestData();
-//        }
+        }
     }
 
     /***
@@ -244,9 +244,9 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
      */
     private boolean isReadCacheData(boolean refresh) {
         String key = getCacheKey();
-//        if (!TDevice.hasInternet()) {
-//            return true;
-//        }
+        if (!TDevice.hasInternet()) {
+            return true;
+        }
         // 第一页若不是主动刷新，缓存存在，优先取缓存的
         if (CacheManager.isExistDataCache(getActivity(), key) && !refresh
                 && mCurrentPage == 0) {

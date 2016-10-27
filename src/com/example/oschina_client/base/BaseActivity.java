@@ -37,6 +37,7 @@ public class BaseActivity extends ActionBarActivity implements
 	protected ActionBar mActionBar;
 	private TextView mTvActionTitle;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -179,7 +180,10 @@ public class BaseActivity extends ActionBarActivity implements
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
+	protected int getActionBarCustomView() {
+		return 0;
+	}
 	protected int getLayoutID() {
 		// TODO Auto-generated method stub
 		return 0;

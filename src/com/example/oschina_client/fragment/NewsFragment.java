@@ -20,7 +20,14 @@ import com.example.oschina_client.interf.OnTabReselectListener;
 import com.example.oschina_client.utils.UIHelper;
 import com.example.oschina_client.utils.XmlUtils;
 
-
+/**
+ * 新闻资讯
+ * 
+ * 通过 parseList 解析数据
+ * 
+ * 
+ * 
+ */
 public class NewsFragment extends BaseListFragment<News> implements
 		OnTabReselectListener {
 

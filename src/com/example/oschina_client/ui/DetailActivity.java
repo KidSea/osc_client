@@ -3,6 +3,7 @@ package com.example.oschina_client.ui;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.example.oschina_client.R;
@@ -31,7 +32,8 @@ public class DetailActivity extends BaseActivity implements OnSendClickListener 
 	public static final int DISPLAY_TEAM_DIAPY = 9;
 
 	public static final String BUNDLE_KEY_DISPLAY_TYPE = "BUNDLE_KEY_DISPLAY_TYPE";
-
+	private OnSendClickListener currentFragment;
+	
 	@Override
 	protected int getLayoutId() {
 		// TODO Auto-generated method stub
@@ -98,16 +100,40 @@ public class DetailActivity extends BaseActivity implements OnSendClickListener 
 		super.onClick(v);
 	}
 
-	@Override
-	public void onClickSendButton(Editable str) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void onClickFlagButton() {
 		// TODO Auto-generated method stub
 
 	}
-
+    @Override
+    public void onClickSendButton(Editable str) {
+//        currentFragment.onClickSendButton(str);
+//        emojiFragment.clean();
+    }
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            try {
+//                if (emojiFragment.isShowEmojiKeyBoard()) {
+//                    emojiFragment.hideAllKeyBoard();
+//                    return true;
+//                }
+//                if (emojiFragment.getEditText().getTag() != null) {
+//                    emojiFragment.getEditText().setTag(null);
+//                    emojiFragment.getEditText().setHint("说点什么吧");
+//                    return true;
+//                }
+//            } catch (NullPointerException e) {
+//            }
+//        }
+        return super.onKeyDown(keyCode, event);
+    }
+    public void setCommentCount(int count) {
+        try {
+//            toolFragment.setCommentCount(count);
+        } catch (Exception e) {
+        }
+    }
 }
