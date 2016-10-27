@@ -306,7 +306,7 @@ public abstract class BaseDetailFragment extends BaseFragment implements
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			LayoutInflater.from(parent.getContext()).inflate(
+			convertView = LayoutInflater.from(parent.getContext()).inflate(
 					R.layout.list_cell_popup_menu, null);
 			TextView name = (TextView) convertView.findViewById(R.id.tv_name);
 
