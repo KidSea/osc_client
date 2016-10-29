@@ -17,7 +17,7 @@ import com.example.oschina_client.fragment.NewsDetailFragment;
  * 
  * @author yuxuehai
  * 
- */
+ */ 
 public class DetailActivity extends BaseActivity implements OnSendClickListener {
 
     public static final int DISPLAY_NEWS = 0;
