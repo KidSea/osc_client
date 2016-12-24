@@ -40,19 +40,26 @@
         android:xlargeScreens="true" />
 
     <application
-        android:allowBackup="true"
         android:name="com.example.oschina_client.AppContext"
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/ActionBarBaseTheme" >
         <activity
-            android:name="com.example.oschina_client.ui.MainActivity"
-            android:label="@string/app_name" >
+            android:name="com.example.oschina_client.AppStart"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppStartLoad" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.oschina_client.ui.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.oschina_client.ui.SimpleBackActivity"

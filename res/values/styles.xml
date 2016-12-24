@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -64,16 +64,17 @@
         <item name="popupMenuStyle">@style/mylistPopupWindowStyle</item>
     </style>
 
+    <style name="Theme.AppStartLoad" parent="android:Theme.Black.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@drawable/welcome</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <style name="ActionBarBaseTheme.Preview" parent="@style/ActionBarBaseTheme">
         <item name="android:windowBackground">@android:color/black</item>
         <item name="actionBarStyle">@style/ActionBarBaseStyle.Transparent</item>
         <item name="windowActionBarOverlay">true</item>
     </style>
 
-    <style name="Theme.AppStartLoad" parent="android:Theme.Black.NoTitleBar.Fullscreen">
-        <item name="android:windowBackground">@drawable/welcome</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
 
     <style name="SpinnerDropDownListView" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
         <item name="android:divider">#3f3f3f</item>
